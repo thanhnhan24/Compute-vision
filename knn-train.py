@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import joblib
+import datetime
 from tqdm import tqdm
 from skimage.feature import hog
 from sklearn.ensemble import RandomForestClassifier
@@ -10,7 +11,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import seaborn as sns
 
 # --- 1. Giải nén dữ liệu ---
-data_path = r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder'
+data_path = r'HAND-CLASSIFICATION.v4i.folder'
 
 train_path = os.path.join(data_path, "train")
 valid_path = os.path.join(data_path, "valid")
@@ -40,28 +41,28 @@ def prepare_dataset(dataset_path):
                     print(f"Error processing {image_path}: {e}")
     return np.array(data), np.array(labels)
 
-# # Load dữ liệu train và test
-# X_train, y_train = prepare_dataset(train_path)
-# X_valid, y_valid = prepare_dataset(valid_path)
-# X_test, y_test = prepare_dataset(test_path)
+# Load dữ liệu train và test
+X_train, y_train = prepare_dataset(train_path)
+X_valid, y_valid = prepare_dataset(valid_path)
+X_test, y_test = prepare_dataset(test_path)
 
-# # --- 4. Huấn luyện mô hình Random Forest ---
-# rf_model = RandomForestClassifier(n_estimators=300, random_state=42, min_samples_split= 5, min_samples_leaf= 4, max_features= 'sqrt', max_depth=20)
-# rf_model.fit(X_train, y_train)
+# --- 4. Huấn luyện mô hình Random Forest ---
+rf_model = RandomForestClassifier(n_estimators=200, random_state=42, min_samples_split= 2, min_samples_leaf= 2, max_features= 'sqrt', max_depth=50)
+rf_model.fit(X_train, y_train)
 
 # # Lưu mô hình đã huấn luyện
-# model_path = "hand_gesture_rf_model.pkl"
-# joblib.dump(rf_model, model_path)
-# print(f"Model saved to {model_path}")
+model_path = f"hand_gesture_rf_model.pkl-{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+joblib.dump(rf_model, model_path)
+print(f"Model saved to {model_path}")
 
 # # --- 5. Dự đoán và đánh giá ---
-# y_pred = rf_model.predict(X_valid)  # Dự đoán trên tập validation
-# accuracy = accuracy_score(y_valid, y_pred)  # So sánh với y_valid
-# report = classification_report(y_valid, y_pred, output_dict=True)  # So sánh với y_valid
-# conf_matrix = confusion_matrix(y_valid, y_pred)  # So sánh với y_valid
+y_pred = rf_model.predict(X_valid)  # Dự đoán trên tập validation
+accuracy = accuracy_score(y_valid, y_pred)  # So sánh với y_valid
+report = classification_report(y_valid, y_pred, output_dict=True)  # So sánh với y_valid
+conf_matrix = confusion_matrix(y_valid, y_pred)  # So sánh với y_valid
 
-# print(f"Accuracy: {accuracy * 100:.2f}%")
-# print("Classification Report:\n", classification_report(y_valid, y_pred))
+print(f"Accuracy: {accuracy * 100:.2f}%")
+print("Classification Report:\n", classification_report(y_valid, y_pred))
 
 # --- 6. Trực quan hóa Confusion Matrix và Metrics ---
 def plot_metrics_and_conf_matrix(cm, report, labels):
@@ -94,7 +95,7 @@ def plot_metrics_and_conf_matrix(cm, report, labels):
     plt.tight_layout()
     plt.show()
 
-# plot_metrics_and_conf_matrix(conf_matrix, report, labels=np.unique(y_train))
+plot_metrics_and_conf_matrix(conf_matrix, report, labels=np.unique(y_train))
 
 # --- 7. Dự đoán ảnh đầu vào ---
 def predict_image(image_path, model_path):
@@ -105,9 +106,9 @@ def predict_image(image_path, model_path):
     return prediction
 
 # Ví dụ sử dụng:
-img = cv2.imread(r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder\test\C\40_jpg.rf.0a2e1c8201a83fc3ac0ec89fcfb77811.jpg')
-img = cv2.resize(img, (640, 640))
-cv2.imshow('image', img)
-predict_image(r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder\test\C\40_jpg.rf.0a2e1c8201a83fc3ac0ec89fcfb77811.jpg', r'hand_gesture_rf_model.pkl')
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# img = cv2.imread(r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder\test\C\40_jpg.rf.0a2e1c8201a83fc3ac0ec89fcfb77811.jpg')
+# img = cv2.resize(img, (640, 640))
+# cv2.imshow('image', img)
+# predict_image(r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder\test\C\40_jpg.rf.0a2e1c8201a83fc3ac0ec89fcfb77811.jpg', r'hand_gesture_rf_model.pkl')
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()

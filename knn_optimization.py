@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV
 
 # ==== ĐỊNH NGHĨA ĐƯỜNG DẪN ====
-extract_path = r'SIFT-KNN-MK2\HAND-CLASSIFICATION.v1i.folder'
+extract_path = r'HAND-CLASSIFICATION.v4i.folder'
 train_path = os.path.join(extract_path, "train")
 valid_path = os.path.join(extract_path, "valid")
 
@@ -45,7 +45,7 @@ y_val_encoded = label_encoder.transform(y_val)
 # ==== TỐI ƯU HÓA RANDOM FOREST ====
 param_grid = {
     'n_estimators': np.arange(50, 301, 50),
-    'max_depth': [None, 10, 20, 30, 40, 50],
+    'max_depth': [None, 10, 20, 30, 40, 50, 60],
     'min_samples_split': [2, 5, 10],
     'min_samples_leaf': [1, 2, 4, 6, 8],
     'max_features': ['auto', 'sqrt', 'log2']
@@ -62,13 +62,13 @@ random_search = RandomizedSearchCV(
     random_state=42
 )
 
-print("\n🔍 Đang tìm kiếm siêu tham số tối ưu...")
+print("\n Đang tìm kiếm siêu tham số tối ưu...")
 random_search.fit(X_train, y_train_encoded)
-print("✅ Hoàn thành tối ưu hóa!")
-print("\n⭐ Siêu tham số tối ưu:")
+print(" Hoàn thành tối ưu hóa!")
+print("\n Siêu tham số tối ưu:")
 print(random_search.best_params_)
 
 # ==== ĐÁNH GIÁ MÔ HÌNH ====
 best_rf = random_search.best_estimator_
 accuracy = best_rf.score(X_val, y_val_encoded)
-print(f"\n🎯 Độ chính xác trên tập kiểm tra: {accuracy:.4f}")
+print(f"\n Độ chính xác trên tập kiểm tra: {accuracy:.4f}")
