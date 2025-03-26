@@ -1,0 +1,105 @@
+=======================
+Image size: 128x128
+Extract method: Built in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(150), 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 'log2', 'max_depth': None}
+Accuracy scrore: 0.8861
+Model path: model/best_rf_sift_model-202503261524.pkl
+
+=======================
+Image size: 160x160
+Extract method: Built in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(150), 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 'log2', 'max_depth': None}
+Accuracy scrore: 0.8694
+Model path: model/best_rf_sift_model-202503261526.pkl
+
+
+=======================
+Image size: 200x200
+Extract method: Built in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(100), 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 20}
+Accuracy scrore: 0.8944
+Model path: model/best_rf_sift_model-202503261527.pkl
+
+
+=======================
+Image size: 320x320
+Extract method: Built in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(300), 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 60}
+Accuracy scrore: 0.8750
+Model path: model/best_rf_sift_model-202503261528.pkl
+
+
+=======================
+Image size: 400x400
+Extract method: Built in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(300), 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 60}
+Accuracy scrore: 0.8167
+Model path: model/best_rf_sift_model-202503261529.pkl
+
+
+=======================
+Image size: 500x500
+Extract method: Built-in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(250), 'min_samples_split': 5, 'min_samples_leaf': 6, 'max_features': 'log2', 'max_depth': 30}
+Accuracy scrore: 0.8194
+Model path: model/best_rf_sift_model-202503261534.pkl
+
+
+=======================
+Image size: 600x600
+Extract method: Built-in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(150), 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 'log2', 'max_depth': None}
+Accuracy scrore: 0.7861
+Model path: model/best_rf_sift_model-202503261535.pkl
+
+
+=======================
+Image size: 640x640
+Extract method: Built-in library
+Optimization hyper parameter result
+{'n_estimators': np.int64(300), 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 60}
+Accuracy scrore: 0.8056
+Model path: model/best_rf_sift_model-202503261535.pkl
+
+
+=======================
+Image size: 128x128
+Extract method: Manual library
+Optimization hyper parameter result
+{'n_estimators': np.int64(300), 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 60}
+Accuracy scrore: 0.8722
+Model path: model/best_rf_sift_model-202503261541.pkl
+
+
+=======================
+Image size: 160x160
+Extract method: Manual library
+Optimization hyper parameter result
+{'n_estimators': np.int64(250), 'min_samples_split': 5, 'min_samples_leaf': 6, 'max_features': 'log2', 'max_depth': 30}
+Accuracy scrore: 0.8639
+Model path: model/best_rf_sift_model-202503261548.pkl
+
+
+=======================
+Image size: 200x200
+Extract method: Manual library
+Optimization hyper parameter result
+{'n_estimators': np.int64(100), 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 20}
+Accuracy scrore: 0.9000
+Model path: model/best_rf_sift_model-202503261558.pkl
+
+
+=======================
+Image size: 320x320
+Extract method: Manual library
+Optimization hyper parameter result
+{'n_estimators': np.int64(300), 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 60}
+Accuracy scrore: 0.8556
+Model path: model/best_rf_sift_model-202503261616.pkl
